@@ -5,21 +5,12 @@
  */
 
 Tree<int> tree1 = new Tree<int>( 100 );
-tree1.Insert( 50 );
-tree1.Insert( 110 );
-tree1.Insert( -5 );
-tree1.Insert( -12 );
-tree1.Insert( 145 );
-tree1.Insert( 03 );
-tree1.Insert( 14 );
-tree1.Insert( -8 );
-tree1.Insert( 160 );
-tree1.Insert( 86 );
-tree1.Insert( 38 );
+InsertIntoTree<int>( ref tree1, 1, 50, 70, 89, -89, 56, -98875, 776, 36, 89, 334 );
+
+
 string sortedData = tree1.WalkTree();
 Console.WriteLine( $"The Data After Sorthing is: {sortedData}" );
 
-Console.WriteLine();
 Console.WriteLine();
 
 /*
@@ -27,22 +18,11 @@ Console.WriteLine();
  */
 
 Tree<string> tree2 = new Tree<string>( "Hello Students" );
-tree2.Insert( "Zeeshan," );
-tree2.Insert( "fawad," );
-tree2.Insert( "Usman," );
-tree2.Insert( "Raza" );
-tree2.Insert( "Hashir" );
-tree2.Insert( "Khan" );
-tree2.Insert( "Ghulam" );
-tree2.Insert( "Imran" );
-tree2.Insert( "Showbaz" );
-tree2.Insert( "Nowaz" );
-tree2.Insert( "jawad" );
-tree2.Insert( "Adnan" );
+InsertIntoTree<string>( ref tree2, "Zeeshan,", "Adil,", "Usman,", "Raza", "Hashir", "Khan" );
+
 sortedData = tree2.WalkTree();
 Console.WriteLine( $"Sorted data is: {sortedData}" );
 
-Console.WriteLine();
 Console.WriteLine();
 
 /*
@@ -72,7 +52,6 @@ Console.WriteLine( $"Sorted data is: {sortedData}" );
 
 
 Console.WriteLine();
-Console.WriteLine();
 
 Square square1 = new Square( 5 );
 Square square2 = new Square( 6 );
@@ -88,5 +67,28 @@ Square square3 = new Square( 9 );
 //tree4.insert( square1 );
 //tree4.Insert( square2 );
 //tree4.Insert( square3 );
+
+
+
+/*
+ *  A generic function for inserting items to a tree without 
+ *  calling the insert funtion again and again
+ */
+
+static void InsertIntoTree<TItem>( ref Tree<TItem> tree, params TItem[] data )
+where TItem : IComparable<TItem>
+    {
+    foreach (TItem datum in data)
+        {
+        if (tree is null)
+            {
+            tree = new Tree<TItem>( datum );
+            }
+        else
+            {
+            tree.Insert( datum );
+            }
+        }
+    }
 
 
