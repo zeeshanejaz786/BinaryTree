@@ -1,6 +1,6 @@
 ﻿namespace BinaryTree
     {
-    public class Tree<TItem> where TItem : IComparable<TItem>
+    public class Tree<TItem> where TItem : IComparable<TItem>, IPrinttree
         {
         public TItem NodeData { get; set; }
         public Tree<TItem>? LeftTree { get; set; }
@@ -49,7 +49,7 @@
                 {
                 result = this.LeftTree.WalkTree();
                 }
-            result += $" {this.NodeData.ToString()} ";
+            result += $" {this.NodeData.PrintNode()} ";
             if (this.RightTree is not null)
                 {
                 result += this.RightTree.WalkTree();
